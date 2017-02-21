@@ -78,10 +78,10 @@ import {lookUrl,lookStr,getString} from '../js/common'
 </script>
 
 <style scoped="">
-	footer{position: absolute;z-index: 10;width: 100%;height: .98rem;padding: .2rem 1.48rem 0 .24rem;background: #dbdbdb;left: 0;bottom: 0;}
-	input{width: 100%;background: #fff;height: .6rem;padding: .2rem .3rem .2rem .8rem;border-radius: .08rem;border: 0 none;}
+	footer{position: absolute;z-index: 10;width: 100%;height: .98rem;padding: .2rem 1.48rem 0 1rem;background: #dbdbdb;left: 0;bottom: 0;}
+	input{width: 100%;background: #fff;height: .6rem;padding: .2rem .3rem .2rem .2rem;border-radius: .08rem;border: 0 none;}
 	span{position: absolute;display: block;width: 1.06rem;height: .6rem;background: #c60000;color: #fff;border-radius: .08rem;text-align: center;line-height: .6rem;right: .24rem;top: .2rem;font-size: .3rem;}
-	.smile{position: absolute;width: .46rem;height: .35rem;border-right: .02rem solid #dcdcdc;background: url(../assets/smile.png) no-repeat left center;background-size: .35rem .35rem;left: .47rem;top: .32rem;}
+	.smile{position: absolute;width: .6rem;height: .6rem;background: url(../assets/smile.png) no-repeat left center;background-size: 100% 100%;left: .2rem;top: .2rem;}
 	.look{position: absolute;z-index: 10;left: 0;width:100%;bottom: .98rem;background: #fff;border-top: .02rem solid #dcdcdc;padding: .2rem 0;}
 	.look li{display: inline-block;*display:inline;*zoom:1;width: .8rem;height: .8rem;line-height: .8rem;text-align: center;}
 	.login,.ishadmeans{position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 5;}

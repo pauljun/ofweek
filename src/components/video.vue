@@ -40,9 +40,9 @@
 
         <!-- 直播结束 -->
         <div class="living_end" v-if="model==4">
+			<img v-if="reviewUrl" :src=reviewUrl alt="">
             <h2 v-if="isVideo==2" class="look_notice">直播已结束，感谢收看。<br>敬请期待直播回顾</h2>
             <p v-if="isVideo==1" @click="lookvod">
-            	<img :src=reviewUrl alt="">
             	<span></span>
             </p>
         </div>
@@ -64,7 +64,7 @@
 
         <!-- 查看回顾 -->
         <div class="vodlook" v-show="model==6">
-            <video v-bind:src="vodvideo" controls id="myAudio"></video>
+            <video v-bind:src="vodvideo" controls id="myAudio" onended="myFunction()"></video>
         </div>
 
         <!-- 初始化加载 -->
@@ -118,7 +118,7 @@ export default {
     methods:{
         //查看回顾
         lookvod:function(){
-            this.model = 6
+            this.$parent.ismodel = 6
         },
         //预定
         book:function(){
@@ -133,27 +133,23 @@ export default {
 }
 </script>
 <style>
-	.fl{float: left}
-	.fr{float: right;}
+.fl{float: left}
+.fr{float: right;}
 .myvedio{position: absolute;width: 100%;height: 4.05rem;top: .96rem;}
 video,.video{width: 100%;height: 4.05rem;background: #000;}
-    .changeliving{background: #000000;height: 100%;color: #ffffff;font-size: .32rem;text-align: center;line-height: 4rem;}
+.changeliving{background: #000000;height: 100%;color: #ffffff;font-size: .32rem;text-align: center;line-height: 4rem;}
 .loading{background: #000000;height: 100%;color: #ffffff;font-size: .32rem;text-align: center;line-height: 4rem;}
 .ppt_living{height: 100%;line-height: 4.05rem;text-align: center;position: relative}
-.ppt_living p{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: .6rem;
-    line-height: .6rem;background: rgba(0,0,0,.3);padding-left: .3rem;color: #FFFF00;text-align: left}
+.ppt_living p{position: absolute;top: 0;left: 0;width: 100%;height: .6rem;line-height: .6rem;background: rgba(0,0,0,.3);padding-left: .3rem;color: #FFFF00;text-align: left}
 .ppt_living img{max-height: 100%;max-width: 100%;}
 .living_end,.wait{text-align: center;font-size: .32rem;height: 100%;background: url(../assets/notice.jpg) no-repeat;background-size: 100% 100%;}
 .wait{line-height: 4.05rem;color: #ffffff;}
-.living_end{position: relative;}
+.living_end{position: relative;background: url(http://live.ofweek.com/static/web/wap/live/static/img/default_preview.png) no-repeat center center;background-size: cover;}
+.living_end img{width: 100%;height: 100%;}
 .notice .bgGray{background: rgba(0,0,0,.2);}
-.living_end p span{display: block;position: absolute;left: 0;top: 0;z-index: 5;width: 100%;height: 100%;background:rgba(0,0,0,.3) url(../assets/look.png) no-repeat center center;background-size: 1.5rem auto;}
-.living_end h2{color: #ffffff;font-size: .36rem;font-weight: normal;margin: 0 .3rem;line-height: .6rem;padding-top: 1rem;}
+.living_end p{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 2;}
+.living_end p span{display: block;position: absolute;left: 0;top: 0;z-index: 5;width: 100%;height: 100%;background:url(../assets/look.png) no-repeat center center;background-size: 1.5rem auto;}
+.living_end h2{color: #ffffff;font-size: .36rem;font-weight: normal;line-height: .6rem;padding-top: 1rem;position: absolute;z-index: 2;width: 100%;padding: 0 .3rem;left: 0;top: 1rem;}
 .notice{height: 100%;background: url(../assets/notice.jpg) no-repeat;background-size: 100% 100%;text-align: center;}
 .notice h4{color: #fff;font-size: .28rem;font-weight: normal;padding:.6rem 0 .3rem 0;}
 .notice ul{width: 6.26rem;margin: 0 auto;}
@@ -161,5 +157,5 @@ video,.video{width: 100%;height: 4.05rem;background: #000;}
 .notice ul li span{display: block;width: .6rem;height: .77rem;background: url(../assets/timebg.png);background-size: 100% 100%;font-size: .6rem;line-height: .77rem;}
 .notice ul li p{color: #fff;font-size: .24rem;margin-top: .8rem;}
 .start-notice{display: block;width: 2.5rem;height: .7rem;line-height: .7rem;text-align: center;font-size: .3rem;background: #c60000;color: #fff;margin-top: .4rem;border-radius: .04rem;margin:.4rem auto 0 auto;}
-	.clearfix:after{clear: both;content: "";height: 0;display: block;}
+.clearfix:after{clear: both;content: "";height: 0;display: block;}
 </style>

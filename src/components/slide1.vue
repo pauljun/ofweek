@@ -67,19 +67,10 @@ export default {
 .living h3{color: #9d9d9d;font-size: .24rem;font-weight: normal;}
 .living article{line-height: .45rem;color: #000;margin-top: .12rem;}
 .living li{padding-left: .2rem;padding-bottom: .3rem;border-left: 1px solid #dfdfdf;}
-	.living li:last-child{padding-bottom: 0;}
+.living li:last-child{padding-bottom: 0;}
 .living img{max-width: 100%;display: block;margin: .08rem 0;}
-	.more{text-align: center;line-height: .56rem;color: #666;display: none;}
-	.no_more{text-align: center;}
-	.rq{position: absolute;height: .6rem;line-height: .6rem;background: #fff;color: #c60000;}
-.rq span{
-    display: block;
-    width: .32rem;
-    height: .3rem;
-    background: url(../assets/hot.png) no-repeat;
-    background-size: 100% 100%;
-    vertical-align: middle;
-    float: left;
-    margin: .12rem .04rem 0 .2rem;
-}
+.more{text-align: center;line-height: .56rem;color: #666;display: none;}
+.no_more{text-align: center;}
+.rq{position: absolute;height: .6rem;line-height: .6rem;background: #fff;color: #c60000;width: 100%;}
+.rq span{display: block;width: .32rem;height: .3rem;background: url(../assets/hot.png) no-repeat;background-size: 100% 100%;vertical-align: middle;float: left;margin: .12rem .04rem 0 .2rem;}
 </style>

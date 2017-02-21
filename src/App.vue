@@ -139,6 +139,16 @@ export default {
 			that.active = that.swiper.activeIndex
 		}
 
+        //录播循环
+		window.myFunction = function() {
+            vodNum++
+            if(vodNum == $this.vodvideoarr.length){
+                vodNum = 0
+                $this.ismodel = 4
+            }
+            $this.vodvideo = $this.vodvideoarr[vodNum]
+        }		
+		
         // 连接socket
         var linkinit = function(){
             if(window.WebSocket){
@@ -147,9 +157,8 @@ export default {
                 webSocket.onerror = function(e){
                     console.log('连接失败，正在重连...')
                     linkinit()
-                    return
-                };
-
+                    return 
+				}
                 webSocket.onopen = function(e){
 					console.log(e)
                     console.log('连接成功')
@@ -310,8 +319,8 @@ export default {
                         //获取房间视频信息
                         case '20331':
                             for(let i = 0;i < data.body.length ; i ++){
-                                if(data.body[i].mp4Url != undefined)                     
-                                    $this.vodvideoarr.push(data.body[i].mp4Url)
+                                if(data.body[i].bPlayUrl != undefined)                     
+                                    $this.vodvideoarr.push(data.body[i].bPlayUrl)
                             }
 
                             if($this.vodvideoarr.length > 0)
@@ -479,7 +488,7 @@ export default {
                             $this.val = data.body.count
                             break
                     }
-                };
+                }
             }
         } 
         linkinit()		
@@ -502,41 +511,21 @@ export default {
 html,body{height: 100%;overflow: hidden;}
 html{font-size: 50px;}
 @media screen and (min-width: 320px) {
-html{font-size: 45px;}   
+	html{font-size: 45px;}   
 } 
 @media screen and (min-width: 360px) {
-html{font-size: 50px;}   
+	html{font-size: 50px;}   
 } 
 body{font-family: SimHei;font-size: .28rem;background: #fff;margin: 0 auto;max-width: 720px;position: relative;}
 img{border: none;vertical-align: middle;}
 li{list-style: none}
 a{text-decoration: none;}
 html,section,div,p,h2,h3,h4,img,ul,li{margin: 0;padding:0;}
-* {
-tap-highlight-color: rgba(255,255,255,0);
-
--ms-tap-highlight-color: rgba(255,255,255,0);
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
--ms-box-sizing: border-box;
-box-sizing: border-box;
-
--webkit-appearance: none;
--webkit-text-size-adjust: none;
-/*-webkit-user-select: none;*/
--webkit-touch-callout:none; 
--webkit-overflow-scrolling:touch;
--webkit-tap-highlight-color: rgba(0,0,0,0);
-outline: 0;
-}
-#app {
-height: 100%;
-width: 100%;
-}
-section{
-height: 100%;
-padding-top: 5.67rem;
-}
+*{tap-highlight-color: rgba(255,255,255,0);
+ms-tap-highlight-color: rgba(255,255,255,0);-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;-webkit-appearance: none;-webkit-text-size-adjust: none;
+/*-webkit-user-select: none;*/-webkit-touch-callout:none; -webkit-overflow-scrolling:touch;-webkit-tap-highlight-color: rgba(0,0,0,0);outline: 0;}
+#app {height: 100%;width: 100%;}
+section{height: 100%;padding-top: 5.67rem;}
 .slide2 article img{width: .64rem;}
 .swiper-slide,.swiper-container,.swiper-wrapper{height: 100% !important;}
 </style>
