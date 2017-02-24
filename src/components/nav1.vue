@@ -1,8 +1,10 @@
 <template>
     <div class="nav1">
-    	<span :class="active == 0?'active':''" @click="clk(0)"><em>查看回顾</em></span>
+		<span :class="active == 0?'active':''" v-if="model == 0" @click="clk(0)"><em>直播预告</em></span>
+		<span :class="active == 0?'active':''" v-if="model == 2"  @click="clk(0)"><em>正在直播</em></span>
+		<span :class="active == 0?'active':''" v-if="model == 4"  @click="clk(0)"><em>查看回顾</em></span>
 		<span :class="active == 1?'active':''" @click="clk(1)"><em>互动区</em></span>
-			<span :class="active == 2?'active':''" @click="clk(2)"><em>直播简介</em></span>
+		<span :class="active == 2?'active':''" @click="clk(2)"><em>直播简介</em></span>
     </div>
 </template>
 
@@ -14,6 +16,9 @@
         },
 		props:{
 			active:{
+				type:Number
+			},
+			model:{
 				type:Number
 			}
 		},

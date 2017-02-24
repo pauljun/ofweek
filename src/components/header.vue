@@ -22,6 +22,6 @@ export default {
 <style scoped>
 	header{height: .96rem;line-height: .96rem;background: #c60000;color: #fff;position: absolute;font-size: .34rem;z-index: 10;left: 0;top: 0;width: 100%;}
 	header a{display: block;width: .52rem;height: .46rem;position: absolute;left: .12rem;top: .2rem;background: url(../assets/home.png);background-size: cover;}
-	header h1{font-size: .34rem;margin:0 .72rem;font-weight: normal;}
+	header h1{font-size: .34rem;margin:0 .72rem;font-weight: normal;overflow: hidden;text-overflow: ellipsis;height: 100%;white-space:nowrap;}
 	span{position: absolute;right: .2rem;top: .24rem;display: block;background: url(../assets/share@1x.png);background-size: 100% 100%;width: .46rem;height: .42rem;}
 </style>

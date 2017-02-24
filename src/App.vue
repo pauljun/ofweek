@@ -4,7 +4,7 @@
     <my-header :room="roomMes"></my-header>
     <my-video :review-url=reviewUrl :room="room" :model="ismodel" :is-video="isVideo" :hlsdownstream="hlsdownstream" :pptimg="pptimg" :vodvideo="vodvideo" :registered="registered" :hlsimg="hlsimg"></my-video>
     <my-nav v-if="isProject==1" v-on:change="changeNav" :active="active"></my-nav>
-    <my-nav1 v-if="isProject==0" v-on:change="changeNav" :active="active"></my-nav1>
+    <my-nav1 v-if="isProject==0" v-on:change="changeNav" :active="active" :model="roomStatus"></my-nav1>
 	<section>
 		<swiper :options="swiperOption" ref="mySwiperA">
 		  <swiper-slide>
@@ -126,7 +126,8 @@ export default {
 			notice:'',
 			nomore:false,
 			val:0,							//人气值
-			reviewUrl:""					//回顾图
+			reviewUrl:"",					//回顾图
+			roomStatus:0					//房间状态
 		}
 	},
 	mounted:function(){
@@ -219,6 +220,7 @@ export default {
                             tol = parseInt(tol)
                             $this.contactShow = data.body.contactShow
                             status = data.body.status
+							$this.roomStatus = status
 
                             $this.watchMode = data.body.watchMode
 							$this.reviewUrl = data.body.reviewUrl
@@ -449,6 +451,7 @@ export default {
                             break
                         //房间状态改变通知
                         case '21300':
+							$this.roomStatus = data.body.status
                             //结束房间直播
                             if(data.body.status == 4){
                                 $this.ismodel = 4
