@@ -127,10 +127,10 @@ export default {
 			nomore:false,
 			val:0,							//人气值
 			reviewUrl:"",					//回顾图
-			roomStatus:0					//房间状态
+			roomStatus:0,					//房间状态
 		}
 	},
-	mounted:function(){
+	mounted:function(){		
         let pptpage,prefix,pptdetail
         let status      //房间状态
         let vodNum = 0

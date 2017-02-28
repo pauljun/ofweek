@@ -18,16 +18,16 @@
     export default {
         data () {
             return {
-				arr:[{"company":"深圳市互联港湾网络技术有限公司0901","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2325,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2325&mode=2"},{"company":"ibm_0416","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2298,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2298&mode=2"},{"company":"互联网络科技有限公司","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2269,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2269&mode=2"},{"company":"测试公司-lena-qin","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2265,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2265&mode=2"},{"company":"Lena-test","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2240,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2240&mode=2"},{"company":"qfx公司测试（0414）","coverImgUrl":"http://expo.ofweek.com/upload/null","endTime":"2016-07-22 17:00","id":2237,"name":"","startTime":"2016-07-20 09:00","status":0,"type":"2","url":"http://expo.ofweek.com/index/booth/enter.xhtml?boothId=2237&mode=2"}]
+				arr:[]
             }
         },
 		mounted:function(){
 			let that = this
 			$.post('http://live.ofweek.com/api/room/listInfoInLive',{
-				roomId:3
+				roomId:userLogin.roomId
 			},function(res){
 				that.arr = res.data
-			})
+			},"json")
 		}
     }
 </script>
