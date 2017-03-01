@@ -2,7 +2,7 @@
   <div id="app">
    	<loader v-if="ismodel == 10" :notice=notice></loader>
     <my-header :room="roomMes"></my-header>
-    <my-video :review-url=reviewUrl :room="room" :model="ismodel" :is-video="isVideo" :hlsdownstream="hlsdownstream" :pptimg="pptimg" :vodvideo="vodvideo" :registered="registered" :hlsimg="hlsimg"></my-video>
+    <my-video :review-url=reviewUrl :room="room" :model="ismodel" :is-video="isVideo" :hlsdownstream="hlsdownstream" :pptimg="pptimg" :vodvideo="vodvideo" :registered="registered" :hlsimg="hlsimg" :vodliving=vodliving></my-video>
     <my-nav v-if="isProject==1" v-on:change="changeNav" :active="active"></my-nav>
     <my-nav1 v-if="isProject==0" v-on:change="changeNav" :active="active" :model="roomStatus"></my-nav1>
 	<section>
@@ -125,6 +125,7 @@ export default {
 			isProject:0,
 			notice:'',
 			nomore:false,
+			vodliving:"",
 			val:0,							//人气值
 			reviewUrl:"",					//回顾图
 			roomStatus:0,					//房间状态
@@ -294,6 +295,7 @@ export default {
 							$this.slide2Num++
 							setTimeout(function(){
 								let arrUser = data.body
+								$(".slideMore").html("加载更多")
 								if(arrUser.length < 20){
 									$(".slideMore").html("没有更多了")
 								}
@@ -310,9 +312,6 @@ export default {
 										}
 									}
 									
-									if(this.author.name == ""){
-										this.author.name = this.author.account.slice(0,4)+'****'
-									}
 								})
 								$this.chathistory = $this.chathistory.concat(arrUser)
 							},time2)
@@ -345,13 +344,15 @@ export default {
 								let arr = data.body
 								if(arr.length == 0)
 									$this.nomore = true
+								$(".more").html("加载更多")
 								if(arr.length < 10)
 									$(".more").html("没有更多了")
 								for(var i in arr){
+									arr[i].content = arr[i].content.replace(/\r\n/g,"<br />")
 									arr[i].updateDate = dataTime(arr[i].updateDate,1)
 								}
 								$this.roomlist = $this.roomlist.concat(data.body)
-								$this.isLoad = 1
+								//$this.isLoad = 1
 							},time)
                             break
                         //获取ppt详情
@@ -379,13 +380,12 @@ export default {
                         //用户群聊通知
                         case '21200':
                             let arrVal = data.body
+							arrVal.author.isKefu = false
 							arrVal.content = lookimg(arrVal.content)
                             for(let m = 0;m < $this.kefuList.length;m++){
                                 if(arrVal.author.userId == $this.kefuList[m].userId){
                                     //如果是客服
                                     arrVal.author.isKefu = true
-                                }else{
-                                    arrVal.author.isKefu = false
                                 }
                             }
 							arrVal.chatTime = dataTime(arrVal.chatTime )
@@ -394,18 +394,19 @@ export default {
                         //发布/修改图文通知
                         case '21341':
 							$this.nomore = false
+							let arrbody = data.body
                             let ishas = 0
                             let picId = data.body.id
+							arrbody.updateDate = dataTime(arrbody.updateDate,1)
                             $.each($this.roomlist,function(index){
                                 if(this.id == picId){
                                     ishas = 1
-                                    $this.roomlist.splice(index,1,data.body)
+                                    $this.roomlist.splice(index,1,arrbody)
                                 }
                             })                    
-
                             //如果不是修改
                             if(ishas != 1)
-                                $this.roomlist.unshift(data.body)
+                                $this.roomlist.unshift(arrbody)
                             break
                         //开启直播
                         case '21800':
@@ -443,7 +444,7 @@ export default {
                         //vod 直播开始通知
                         case '21820':
 							$this.ismodel = 8
-							$this.vodLiving = data.body.vodName
+							$this.vodliving = data.body.vodName
                             break
                         //vod 直播结束通知
                         case '21821':

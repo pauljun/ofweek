@@ -1,6 +1,6 @@
 <template>
   <header>
-	<a href="http://live.ofweek.com/wap"></a>
+	<a href="javascript:window.history.go(-1)"></a>
 	<h1 v-html=room.name></h1>
 <!--	<span id="shareBtn"></span>-->
   </header>

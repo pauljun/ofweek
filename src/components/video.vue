@@ -59,7 +59,7 @@
         
         <!-- 视频直播 -->
         <div class="vodlook" v-show="model==8">
-            <video v-bind:src="vodLiving" controls></video>
+            <video v-bind:src="vodliving"></video>
         </div>
 
         <!-- 查看回顾 -->
@@ -105,7 +105,7 @@ export default {
         isVideo:{
             type:Number
         },
-		vodLiving:{
+		vodliving:{
 			type:String
 		},
 		reviewUrl:{

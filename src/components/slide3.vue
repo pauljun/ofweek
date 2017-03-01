@@ -4,11 +4,13 @@
     		<li v-for="i in arr">
     			<a :href="i.url">
     				<img :src="i.coverImgUrl" alt="">
-    				<p v-html=i.company></p>
+    				<p v-html=i.name></p>
     			</a>
     			<span v-if="i.status == 2" class="s1">直播中</span>
+<!--
     			<span v-if="i.status == 0" class="s1">预告</span>
     			<span v-if="i.status == 4" class="s1">结束</span>
+-->
     		</li>
     	</ul>
     </div>

@@ -11,7 +11,7 @@
 			</article>
 		</li>
 	</ul>
-	<div class="no_more" v-if="nomore">暂无图文消息，精彩内容请敬请期待！</div>
+	<div class="no_more" v-if="nomore">暂无图文消息，精彩内容敬请期待！</div>
 	<div class="more">加载中</div>
 </div>
 </template>
@@ -21,8 +21,7 @@ import {getString} from '../js/common'
 export default {
 	data (){
 		return {
-			num:10,
-			isLoad:1
+			num:10
 		}
 	},
 	props:{
@@ -40,17 +39,14 @@ export default {
 		let $this = this
 		//滚动加载图文直播
 		$(".living").scroll(function(){
-			if($this.isLoad != 1)
-				return 
-			if($(".more").html() == "没有更多了")
+			if($(".more").html() == "没有更多了" || $(".more").html() == "加载中")
 				return ;
 			var top = $(this).scrollTop();
 			var Height = $(this).height();
 			var ul = $(this).find("ul").height();
 
 			if(top + Height > ul){
-				$this.isLoad = 2
-				$(".more").show()
+				$(".more").show().html("加载中")
 				let url = getString('0340',{"start":$this.num,"size":10})
 				webSocket.send(url)
 				$this.num += 10

@@ -2,7 +2,7 @@
     <div class="nav">
     	<span :class="active == 0?'active':''" @click="clk(0)">图文直播</span>
     	<span :class="active == 1?'active':''" @click="clk(1)">互动区</span>
-    	<span :class="active == 2?'active':''" @click="clk(2)">展商直播</span>
+    	<span :class="active == 2?'active':''" @click="clk(2)">直播</span>
     	<span :class="active == 3?'active':''" @click="clk(3)">展会报道</span>
     </div>
 </template>

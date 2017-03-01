@@ -20,7 +20,7 @@
 					</article>
 				</li>
 			</ul>
-			<div class="slideMore">加载中</div>
+			<div class="slideMore">加载更多</div>
 		</div>
     </div>
 </template>
@@ -31,7 +31,6 @@ export default {
     data (){
         return{
 			num:20,
-			isLoad:1
         }
     },
     props:{
@@ -43,19 +42,16 @@ export default {
 		let $this = this
 		//滚动加载图文直播
 		$(".content").scroll(function(){
-			if($this.isLoad != 1)
-				return 
-			if($(".slideMore").html() == "没有更多了")
+			if($(".slideMore").html() == "没有更多了" || $(".slideMore").html() == "加载中")
 				return ;
 			var top = $(this).scrollTop();
 			var Height = $(this).height();
 			var ul = this.scrollHeight;
 			if(top + Height > (ul - 2)){
-				$this.isLoad = 2
-				$(".slideMore").show()
-				let url = getString('0201',{"start":$this.num,"size":10})
+				$(".slideMore").show().html("加载中")
+				let url = getString('0201',{"start":$this.num,"size":20})
 				webSocket.send(url)
-				$this.num += 10
+				$this.num += 20
 			}
 		})
     }
