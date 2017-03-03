@@ -59,7 +59,7 @@
         
         <!-- 视频直播 -->
         <div class="vodlook" v-show="model==8">
-            <video v-bind:src="vodliving"></video>
+            <video v-bind:src="vodliving" controls></video>
         </div>
 
         <!-- 查看回顾 -->

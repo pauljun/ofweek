@@ -4,7 +4,8 @@
     		<li v-for="i in arr">
     			<a :href="i.url">
     				<img :src="i.coverImgUrl" alt="">
-    				<p v-html=i.name></p>
+    				<p v-if="i.type==1" v-html=i.name></p>
+    				<p v-if="i.type==2" v-html=i.company></p>
     			</a>
     			<span v-if="i.status == 2" class="s1">直播中</span>
 <!--

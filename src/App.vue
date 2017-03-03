@@ -150,7 +150,7 @@ export default {
             }
             $this.vodvideo = $this.vodvideoarr[vodNum]
         }		
-		
+
         // 连接socket
         var linkinit = function(){
             if(window.WebSocket){
@@ -207,6 +207,7 @@ export default {
                             break
                         //获取房间基本信息
                         case '20300':
+							var start = data.body.startTime
 							$this.isProject = data.body.isProject
                             $this.roomMes = data.body
 							$this.roomMes.startTime =  dataTime($this.roomMes.startTime)
@@ -214,11 +215,12 @@ export default {
                             //获取房间信息,判断开始时间是否有效
                             var now = new Date();
                             var chaTime = now
-                            var start = data.body.startTime
+                            
                             var startDate = new Date(start)
-                            var time = dataTime(startDate)
-                            var tol = (startDate - now)/1000
+                            //var time = dataTime(start)
+                            var tol = (start - now)/1000
                             tol = parseInt(tol)
+
                             $this.contactShow = data.body.contactShow
                             status = data.body.status
 							$this.roomStatus = status
@@ -473,7 +475,7 @@ export default {
                             //$.each($this.roomlist,function(index){
 							for (let i in $this.roomlist){
                                 if($this.roomlist[i].id == data.body.id){
-                                    $this.roomlist.splice(index,1)
+                                    $this.roomlist.splice(i,1)
                                 }
                             }
                             break

@@ -57,9 +57,9 @@ export default {
 </script>
 
 <style>
-.living{padding:0 .3rem;overflow-y:auto;height: 100%;word-break: break-all}
-.living ul{padding:.6rem 0 .3rem 0;}
-.living span.fl{display: block;width: .24rem;height: .24rem;background:#fff url(../assets/time.png);background-size: 100% 100%;margin-left: -.34rem;margin-top: 0;position: relative;z-index: 555;float: left;}
+.living{height: 100%;word-break: break-all;position: relative;overflow: hidden;}
+.living ul{padding:.6rem .3rem .3rem .3rem;overflow-y:auto;height: 100%;}
+.living span.fl{display: block;width: .24rem;height: .24rem;background:#fff url(../assets/time.png);background-size: 100% 100%;margin-left: -.34rem;margin-top: 0;position: relative;z-index: 5;float: left;}
 .living h3{color: #9d9d9d;font-size: .24rem;font-weight: normal;}
 .living article{line-height: .45rem;color: #000;margin-top: .12rem;}
 .living li{padding-left: .2rem;padding-bottom: .3rem;border-left: 1px solid #dfdfdf;}
@@ -67,6 +67,6 @@ export default {
 .living img{max-width: 100%;display: block;margin: .08rem 0;}
 .more{text-align: center;line-height: .56rem;color: #666;display: none;}
 .no_more{text-align: center;}
-.rq{position: absolute;height: .6rem;line-height: .6rem;background: #fff;color: #c60000;width: 100%;}
+.rq{position: absolute;height: .6rem;line-height: .6rem;background: #fff;color: #c60000;width: 100%;z-index: 8;left: 0;top: 0;}
 .rq span{display: block;width: .32rem;height: .3rem;background: url(../assets/hot.png) no-repeat;background-size: 100% 100%;vertical-align: middle;float: left;margin: .12rem .04rem 0 .2rem;}
 </style>

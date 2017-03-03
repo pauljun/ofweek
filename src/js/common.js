@@ -44,6 +44,7 @@ export function lookimg(value){
 // 时间戳转换为时间
 export function dataTime(value,num = 0){
     var time = new Date(value)
+//	var time = value
     var mon = time.getMonth()+1
     let y = time.getFullYear()
     let t = mon >= 10 ? mon : '0' + mon
