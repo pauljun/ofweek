@@ -9,7 +9,7 @@
 					<a :href="i.htmlpath">
 						<img :src="images+i.pictureurls" alt="">
 					</a>
-					<p v-html=i.title></p>
+					<p v-html=i.subtitle></p>
 				</li>
 			</ul>
 			
@@ -20,7 +20,7 @@
 							<img :src="images+m.pictureMiddlePath" alt="">
 						</a>
 						<div>
-							<a :href="m.htmlpath" v-html=m.title></a>
+							<a :href="m.htmlpath" v-html=m.subtitle></a>
 						</div>
 					</li>
 				</ul>
@@ -38,12 +38,12 @@
 					<a :href="i.htmlpath">
 						<img :src="images+i.pictureurls" alt="">
 					</a>
-					<p v-html=i.title></p>
+					<p v-html=i.subtitle></p>
 				</li>
 			</ul>
 			<ul class="news">
 				<li v-for="i in hotArrb">
-					<a :href="i.htmlpath" v-html=i.title></a>
+					<a :href="i.htmlpath" v-html=i.subtitle></a>
 				</li>
 			</ul>
 		</div>
@@ -52,8 +52,8 @@
 			<h3>展商采访<span></span></h3>
 			<ul class="list1 list4">
 				<li v-for="i in expoArr">
-					<a href=""><img :src="images+i.pictureurls" alt=""></a>
-					<h5 v-html=i.title></h5>
+					<a :href="i.htmlpath"><img :src="images+i.pictureMiddlePath" alt=""></a>
+					<h5 v-html=i.subtitle></h5>
 				</li>
 			</ul>
 		</div>
@@ -161,7 +161,7 @@ const imgUrl  = "http://www.ofweek.com/live/topic.do?method=getPicGroupAjax"
 		
 			setTimeout(function(){
 				$.ajax({
-					url: hotUrl+'0&smallclass='+userLogin.roomId,
+					url: hotUrl+'0&num=4&smallclass='+userLogin.roomId,
 					type: 'GET',
 					dataType: 'jsonp',
 					jsonp: 'jsonpCallback',
@@ -176,7 +176,7 @@ const imgUrl  = "http://www.ofweek.com/live/topic.do?method=getPicGroupAjax"
 			
 			setTimeout(function(){
 				$.ajax({
-					url: hotUrl+'1&smallclass='+userLogin.roomId,
+					url: hotUrl+'1&num=100&smallclass='+userLogin.roomId,
 					type: 'GET',
 					dataType: 'jsonp',
 					jsonp: 'jsonpCallback',

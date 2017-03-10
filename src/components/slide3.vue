@@ -42,7 +42,7 @@
 	li{margin-bottom: .3rem;float: left;padding-right: .24rem;text-align: center;width: 50%;position: relative;}
 	a{display: block;}
 	p{color: #666;font-size: .28rem;line-height: .48rem;background: #fff;height: .48rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-	img{width: 100%;height: 2rem;}
+	img{max-width: 100%;height: 2rem;}
 	span{display: block;position: absolute;left: -.06rem;top: 0;width: 1.2rem;height: .3rem;line-height: .3rem;text-align: center;color: #fff;background-size: 100% 100%;font-size: .24rem;}
 	span.s1{background-image: url(../assets/tlt.png);}
 </style>

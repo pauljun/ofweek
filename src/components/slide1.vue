@@ -1,18 +1,21 @@
 <template>
 <div class="living">
 	<div class="rq"><span></span>{{val}}</div>
-	<ul>
-		<li v-for="i in room">
-			<h3>
-				<span class="fl"></span>
-				{{i.updateDate}}
-			</h3>
-			<article v-html=i.content>
-			</article>
-		</li>
-	</ul>
-	<div class="no_more" v-if="nomore">暂无图文消息，精彩内容敬请期待！</div>
-	<div class="more">加载中</div>
+	<div class="ul-list">
+		<ul>
+			<li v-for="i in room">
+				<h3>
+					<span class="fl"></span>
+					{{i.createDate}}
+				</h3>
+				<article v-html=i.content>
+				</article>
+			</li>
+		</ul>
+		<div class="no_more" v-if="nomore">暂无图文消息，精彩内容敬请期待！</div>
+
+		<div class="more">加载中</div>
+	</div>
 </div>
 </template>
 
@@ -38,13 +41,13 @@ export default {
 	mounted:function(){
 		let $this = this
 		//滚动加载图文直播
-		$(".living").scroll(function(){
+		$(".ul-list").scroll(function(){
 			if($(".more").html() == "没有更多了" || $(".more").html() == "加载中")
 				return ;
 			var top = $(this).scrollTop();
 			var Height = $(this).height();
 			var ul = $(this).find("ul").height();
-
+			
 			if(top + Height > ul){
 				$(".more").show().html("加载中")
 				let url = getString('0340',{"start":$this.num,"size":10})
@@ -58,7 +61,8 @@ export default {
 
 <style>
 .living{height: 100%;word-break: break-all;position: relative;overflow: hidden;}
-.living ul{padding:.6rem .3rem .3rem .3rem;overflow-y:auto;height: 100%;}
+.living	.ul-list{overflow-y:auto;height: 100%;}
+.living ul{padding:.6rem .3rem .3rem .3rem;}
 .living span.fl{display: block;width: .24rem;height: .24rem;background:#fff url(../assets/time.png);background-size: 100% 100%;margin-left: -.34rem;margin-top: 0;position: relative;z-index: 5;float: left;}
 .living h3{color: #9d9d9d;font-size: .24rem;font-weight: normal;}
 .living article{line-height: .45rem;color: #000;margin-top: .12rem;}

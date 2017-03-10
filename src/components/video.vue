@@ -1,5 +1,5 @@
 <template>
-    <nav class="myvedio">
+    <nav class="myvedio" v-bind:style="{backgroundImage:'url('+reviewUrl+')'}">
         <!-- 视频直播 -->
         <div class="vedio" v-if="model==0">
             <video v-if="hlsdownstream" v-bind:src=hlsdownstream v-bind:poster="hlsimg" controls autoplay></video>
@@ -35,12 +35,11 @@
             </ul>
             <a v-if="registered" class="start-notice bgGray" href="javascript:;">已预订</a>
             <span v-else class="start-notice no_btn" @click="book">预订</span>
-            <p></p>
+			<!--<p></p>-->
         </div>
 
         <!-- 直播结束 -->
         <div class="living_end" v-if="model==4">
-			<img v-if="reviewUrl" :src=reviewUrl alt="">
             <h2 v-if="isVideo==2" class="look_notice">直播已结束，感谢收看。<br>敬请期待直播回顾</h2>
             <p v-if="isVideo==1" @click="lookvod">
             	<span></span>
@@ -59,26 +58,18 @@
         
         <!-- 视频直播 -->
         <div class="vodlook" v-show="model==8">
-            <video v-bind:src="vodliving" controls></video>
+            <video v-bind:src="vodliving" v-bind:poster="reviewUrl" controls></video>
         </div>
 
         <!-- 查看回顾 -->
         <div class="vodlook" v-show="model==6">
-            <video v-bind:src="vodvideo" controls id="myAudio" onended="myFunction()"></video>
-        </div>
-
-        <!-- 初始化加载 -->
-        <div class="loading" v-if="model==10">
-            <span class="rect1">正</span>
-            <span class="rect2">在</span>
-            <span class="rect3">加</span>
-            <span class="rect4">载</span>
-            <span class="rect5">中</span>...
+            <video v-bind:src="vodvideo" v-bind:poster="reviewUrl" controls id="myAudio" onended="myFunction()"></video>
         </div>
     </nav>
 </template>
 
 <script>
+	import {getString} from '../js/common'
 export default {
     props:{
         room:{
@@ -135,22 +126,24 @@ export default {
 <style>
 .fl{float: left}
 .fr{float: right;}
-.myvedio{position: absolute;width: 100%;height: 4.05rem;top: .96rem;}
+.myvedio{position: absolute;width: 100%;height: 4.05rem;top: .96rem;background-repeat:no-repeat;background-position:center center;background-size: 100% 100%;text-shadow: #000 0 2px 0;}
 video,.video{width: 100%;height: 4.05rem;background: #000;}
-.changeliving{background: #000000;height: 100%;color: #ffffff;font-size: .32rem;text-align: center;line-height: 4rem;}
-.loading{background: #000000;height: 100%;color: #ffffff;font-size: .32rem;text-align: center;line-height: 4rem;}
+
+/*ppt*/
 .ppt_living{height: 100%;line-height: 4.05rem;text-align: center;position: relative}
 .ppt_living p{position: absolute;top: 0;left: 0;width: 100%;height: .6rem;line-height: .6rem;background: rgba(0,0,0,.3);padding-left: .3rem;color: #FFFF00;text-align: left}
 .ppt_living img{max-height: 100%;max-width: 100%;}
-.living_end,.wait{text-align: center;font-size: .32rem;height: 100%;background: url(../assets/notice.jpg) no-repeat;background-size: 100% 100%;}
+	
+
+.living_end,.wait{text-align: center;font-size: .32rem;height: 100%;}
 .wait{line-height: 4.05rem;color: #ffffff;}
-.living_end{position: relative;background: url(http://live.ofweek.com/static/web/wap/live/static/img/default_preview.png) no-repeat center center;background-size: cover;}
+.living_end{position: relative;}
 .living_end img{width: 100%;height: 100%;}
 .notice .bgGray{background: rgba(0,0,0,.2);}
 .living_end p{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 2;}
 .living_end p span{display: block;position: absolute;left: 0;top: 0;z-index: 5;width: 100%;height: 100%;background:url(../assets/look.png) no-repeat center center;background-size: 1.5rem auto;}
 .living_end h2{color: #ffffff;font-size: .36rem;font-weight: normal;line-height: .6rem;padding-top: 1rem;position: absolute;z-index: 2;width: 100%;padding: 0 .3rem;left: 0;top: 1rem;}
-.notice{height: 100%;background: url(../assets/notice.jpg) no-repeat;background-size: 100% 100%;text-align: center;}
+.notice{height: 100%;text-align: center;}
 .notice h4{color: #fff;font-size: .28rem;font-weight: normal;padding:.6rem 0 .3rem 0;}
 .notice ul{width: 6.26rem;margin: 0 auto;}
 .notice ul li{float: left;width: 1.56rem;padding: 0 .15rem;}

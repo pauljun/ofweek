@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-   	<loader v-if="ismodel == 10" :notice=notice></loader>
-    <my-header :room="roomMes"></my-header>
+	<headerload></headerload>
+	<loader v-if="ismodel == 10" :notice=notice></loader>
+    <my-header :room="roomMes" :is-project=isProject></my-header>
     <my-video :review-url=reviewUrl :room="room" :model="ismodel" :is-video="isVideo" :hlsdownstream="hlsdownstream" :pptimg="pptimg" :vodvideo="vodvideo" :registered="registered" :hlsimg="hlsimg" :vodliving=vodliving></my-video>
     <my-nav v-if="isProject==1" v-on:change="changeNav" :active="active"></my-nav>
     <my-nav1 v-if="isProject==0" v-on:change="changeNav" :active="active" :model="roomStatus"></my-nav1>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+const bgImg = 'http://live.ofweek.com/static/web/wap/live/static/img/default_preview.png'
 import myHeader from './components/header'
 import myVideo from	'./components/video'
 import myNav from './components/nav'
@@ -45,6 +47,7 @@ import myFooter from './components/footer'
 import login from './components/login'
 import ishadmean from './components/ishadmean'
 import loader from './components/loading'
+import headerload from './components/headerload'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 import {socket} from './js/socket'
@@ -68,7 +71,8 @@ export default {
 		myFooter,
 		login,
 		ishadmean,
-		loader
+		loader,
+		headerload
 	},
 	data (){
 		return {
@@ -127,7 +131,7 @@ export default {
 			nomore:false,
 			vodliving:"",
 			val:0,							//人气值
-			reviewUrl:"",					//回顾图
+			reviewUrl:bgImg,					//回顾图
 			roomStatus:0,					//房间状态
 		}
 	},
@@ -226,7 +230,10 @@ export default {
 							$this.roomStatus = status
 
                             $this.watchMode = data.body.watchMode
-							$this.reviewUrl = data.body.reviewUrl
+							
+							if(data.body.reviewUrl)
+								$this.reviewUrl = data.body.reviewUrl
+								
                             if($this.ismodel == 10){
                                 //直播结束
                                 if(status == 4){       
@@ -321,10 +328,16 @@ export default {
                             break
                         //获取房间视频信息
                         case '20331':
-                            for(let i = 0;i < data.body.length ; i ++){
-                                if(data.body[i].bPlayUrl != undefined)                     
-                                    $this.vodvideoarr.push(data.body[i].bPlayUrl)
-                            }
+							
+							for(let i = 0;i < data.body.length ; i ++){
+								if(data.body[i].type == 1){  //百度
+									if(data.body[i].bPlayUrl != undefined)                     
+										$this.vodvideoarr.push(data.body[i].bPlayUrl)
+								}else{   //腾讯
+									if(data.body[i].mp4Url != undefined)                     
+										$this.vodvideoarr.push(data.body[i].mp4Url)	
+								}
+							}
 
                             if($this.vodvideoarr.length > 0)
                                 $this.isVideo = 1
@@ -344,14 +357,14 @@ export default {
 							$this.slide1Num++
 							setTimeout(function(){
 								let arr = data.body
-								if(arr.length == 0)
+								if(arr.length == 0 && time == 0)
 									$this.nomore = true
 								$(".more").html("加载更多")
 								if(arr.length < 10)
 									$(".more").html("没有更多了")
 								for(var i in arr){
 									arr[i].content = arr[i].content.replace(/\r\n/g,"<br />")
-									arr[i].updateDate = dataTime(arr[i].updateDate,1)
+									arr[i].createDate = dataTime(arr[i].createDate,1)
 								}
 								$this.roomlist = $this.roomlist.concat(data.body)
 								//$this.isLoad = 1
@@ -399,7 +412,7 @@ export default {
 							let arrbody = data.body
                             let ishas = 0
                             let picId = data.body.id
-							arrbody.updateDate = dataTime(arrbody.updateDate,1)
+							arrbody.createDate = dataTime(arrbody.createDate,1)
                             $.each($this.roomlist,function(index){
                                 if(this.id == picId){
                                     ishas = 1
@@ -417,6 +430,7 @@ export default {
                             if(data.body.type == "live" || data.body.type=="camera_live"){
                                 //普通直播
                                 $this.ismodel = 0
+								$this.hlsdownstream = ""
                                 $this.hlsdownstream = data.body.hlsDownstream    
                                 //$this.hlsimg = data.body                            
                             }else if(data.body.type == "ppt_live"){                          
