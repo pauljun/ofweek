@@ -233,7 +233,7 @@ export default {
 							
 							if(data.body.reviewUrl)
 								$this.reviewUrl = data.body.reviewUrl
-								
+							
                             if($this.ismodel == 10){
                                 //直播结束
                                 if(status == 4){       
@@ -405,6 +405,9 @@ export default {
                             }
 							arrVal.chatTime = dataTime(arrVal.chatTime )
                             $this.chathistory.unshift(arrVal)
+							if(arrVal.author.userId == userLogin.userId)
+								$this.changeNav(1)
+							$(".slide2 .content").scrollTop(0)
                             break
                         //发布/修改图文通知
                         case '21341':
@@ -425,13 +428,12 @@ export default {
                             break
                         //开启直播
                         case '21800':
+                            $this.hlsdownstream = data.body.hlsDownstream 
                             //开启语音聊天
                             $this.chatShow = true
                             if(data.body.type == "live" || data.body.type=="camera_live"){
                                 //普通直播
-                                $this.ismodel = 0
-								$this.hlsdownstream = ""
-                                $this.hlsdownstream = data.body.hlsDownstream    
+                                $this.ismodel = 0   
                                 //$this.hlsimg = data.body                            
                             }else if(data.body.type == "ppt_live"){                          
                                 //ppt直播
@@ -441,7 +443,7 @@ export default {
                                 let pptId = data.body.pptId
 
                                 pptpage = data.body.page - 1
-
+								
                                 // 发送ppt详情请求
                                 let pptUrl = getString('0321',{"id":pptId})
                                 webSocket.send(pptUrl)

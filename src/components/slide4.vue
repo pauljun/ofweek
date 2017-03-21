@@ -231,7 +231,7 @@ const imgUrl  = "http://www.ofweek.com/live/topic.do?method=getPicGroupAjax"
 </script>
 
 <style>
-.app_content{padding: .24rem 0;height: 100%;overflow-y: auto;}
+.app_content{padding: .24rem 0 1.2rem 0;height: 100%;overflow-y: auto;}
 .app_content h3{font-size: .32rem;border-left: .06rem solid #c60000;line-height: .32rem;height: .32rem;color: .app_content #666;font-weight: normal;padding-left: .06rem;margin-bottom: .2rem;margin-left: .24rem;margin-right: .24rem;position: relative;overflow: hidden;}
 .app_content h3 span{display: block;position: absolute;width: 100%;border-top: .02rem solid #dcdcdc;top: .14rem;left: 1.4rem;}
 .app_content ul{padding-left: .24rem;}

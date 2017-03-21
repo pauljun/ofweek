@@ -31,9 +31,9 @@
 </script>
 
 <style>
-	.nav1{height: .66rem;line-height: .66rem;color: #000;position: absolute;width: 100%;top: 5.01rem;left: 0;z-index: 10;border-bottom: 1px solid #ccc;}
-	.nav1 span{text-align: center;position: relative;height: 100%;float: left;width: 33.3%;}
-	.nav1 span.active{color: #c60000;}
-	.nav1 em{font-style: normal;}
-	.nav1 span.active em{border-bottom: .05rem solid #c60000;height: 100%;display: inline-block;}
+.nav1{height: .66rem;line-height: .66rem;color: #000;position: absolute;width: 100%;top: 5.01rem;left: 0;z-index: 10;border-bottom: 1px solid #ccc;}
+.nav1 span{text-align: center;position: relative;height: 100%;float: left;width: 33.3%;}
+.nav1 span.active{color: #c60000;}
+.nav1 em{font-style: normal;}
+.nav1 span.active em{border-bottom: .05rem solid #c60000;height: 100%;display: inline-block;}
 </style>

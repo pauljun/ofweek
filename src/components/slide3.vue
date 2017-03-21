@@ -36,7 +36,7 @@
 </script>
 
 <style scoped="">
-	div{padding: 0 0 0 0;background: #f3f4f8;height: 100%;}
+	div{padding: 0 0 1.2rem 0;background: #f3f4f8;height: 100%;}
 	div:after{content: '';clear: both;display: block;height: 0;}
 	ul{height: 100%;overflow-y: auto;padding-left: .24rem;padding-top: .3rem;}
 	li{margin-bottom: .3rem;float: left;padding-right: .24rem;text-align: center;width: 50%;position: relative;}

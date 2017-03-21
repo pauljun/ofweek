@@ -52,7 +52,10 @@
 
         <!-- ppt直播 -->
         <div class="ppt_living" v-if="model==5">
-            <p>如果您听不到直播声音，建议用电脑观看PPT直播。</p>
+			<!--<p>如果您听不到直播声音，建议用电脑观看PPT直播。</p>-->
+           <audio id="media_audio" webkit-playsinline="" controls  autoplay playsinline="" v-bind:src=hlsdownstream>
+     (#_#) 你的设备不支持播放视频直播... 
+   </audio>
             <img v-bind:src="pptimg" alt="">
         </div>
         
@@ -126,14 +129,16 @@ export default {
 <style>
 .fl{float: left}
 .fr{float: right;}
-.myvedio{position: absolute;width: 100%;height: 4.05rem;top: .96rem;background-repeat:no-repeat;background-position:center center;background-size: 100% 100%;text-shadow: #000 0 2px 0;}
+	
+#media_audio{position: absolute;bottom: 0;left: 0;width: 100%;background: rgba(0,0,0,.3)}	
+	
+.myvedio{position: absolute;width: 100%;height: 4.05rem;top: .96rem;background-repeat:no-repeat;background-position:center center;background-size: 100% 100%;text-shadow: #000 0 1px 0;}
 video,.video{width: 100%;height: 4.05rem;background: #000;}
 
 /*ppt*/
-.ppt_living{height: 100%;line-height: 4.05rem;text-align: center;position: relative}
+.ppt_living{height: 100%;line-height: 4.05rem;text-align: center;position: relative;background: #000;}
 .ppt_living p{position: absolute;top: 0;left: 0;width: 100%;height: .6rem;line-height: .6rem;background: rgba(0,0,0,.3);padding-left: .3rem;color: #FFFF00;text-align: left}
 .ppt_living img{max-height: 100%;max-width: 100%;}
-	
 
 .living_end,.wait{text-align: center;font-size: .32rem;height: 100%;}
 .wait{line-height: 4.05rem;color: #ffffff;}

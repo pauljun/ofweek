@@ -1,5 +1,5 @@
 <template>
-    <footer v-show="active==1">
+    <footer>
     	<div class="smile" @click=smile></div>
     	<input type="text" placeholder="说点什么" v-model=val>
     	<span @click="sendMess()">发送</span>

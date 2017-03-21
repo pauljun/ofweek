@@ -77,7 +77,7 @@ export default {
 }
 </script>
 <style scoped="">
-	.item-three{height: 100%;overflow-y: auto;padding-bottom: .3rem;}
+	.item-three{height: 100%;overflow-y: auto;padding-bottom: 1.2rem;}
 h2{padding: .35rem 0 .2rem;text-align: center;font-size: .3rem;color: #5685bd;background: #f3f3f3;}
 .mes_content{margin-top: .2rem;}
 .watch_top div,.contant_content div{position: relative;padding: 0 .24rem 0 1.6rem;margin-top: .12rem;line-height: .4rem;color: #000;}

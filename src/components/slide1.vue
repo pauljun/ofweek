@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style>
-.living{height: 100%;word-break: break-all;position: relative;overflow: hidden;}
+.living{height: 100%;word-break: break-all;position: relative;overflow: hidden;padding-bottom: 1rem;}
 .living	.ul-list{overflow-y:auto;height: 100%;}
 .living ul{padding:.6rem .3rem .3rem .3rem;}
 .living span.fl{display: block;width: .24rem;height: .24rem;background:#fff url(../assets/time.png);background-size: 100% 100%;margin-left: -.34rem;margin-top: 0;position: relative;z-index: 5;float: left;}
